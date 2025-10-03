@@ -1,4 +1,4 @@
-package fail.scribble.seedchecker;
+package fail.scribble.seedchecker.common;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;

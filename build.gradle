@@ -11,11 +11,7 @@ base {
 }
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	mavenCentral()
 }
 
 loom {
@@ -23,6 +19,12 @@ loom {
 	if(accessWidenerFile.exists()) {
 		accessWidenerPath = accessWidenerFile
 	}
+}
+
+// dependency configurations
+configurations {
+    // embed dependency included in build
+    implementation.extendsFrom(embed)
 }
 
 dependencies {
@@ -34,6 +36,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
+	embed "io.methvin:directory-watcher:0.19.1"
 }
 
 processResources {
@@ -64,6 +67,13 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
+	
+	// pack embedded stuff
+	from {
+		configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "LICENSE.txt", "META-INF/MANIFSET.MF", "META-INF/maven/**", "META-INF/*.RSA", "META-INF/*.SF"
+    }
 }
 
 // configure the maven publication

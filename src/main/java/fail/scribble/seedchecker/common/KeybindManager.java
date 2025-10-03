@@ -1,4 +1,4 @@
-package fail.scribble.seedchecker;
+package fail.scribble.seedchecker.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.inventory.SignEditScreen;
+import net.minecraft.client.gui.screens.options.controls.KeyBindsScreen;
 
 public class KeybindManager {
 
@@ -152,7 +153,7 @@ public class KeybindManager {
 
 	public static boolean isKeyDownExceptTextField(KeyMapping keybind) {
 		Minecraft mc = Minecraft.getInstance();
-		if (mc.screen instanceof ChatScreen || mc.screen instanceof SignEditScreen || (focused && mc.screen != null)) {
+		if (mc.screen instanceof ChatScreen || mc.screen instanceof SignEditScreen || mc.screen instanceof KeyBindsScreen || (focused && mc.screen != null)) {
 			return false;
 		}
 		return isKeyDown(keybind);

@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "seedchecker",
 	"version": "${version}",
-	"name": "SeedChecker",
+	"name": "Seed Checker",
 	"description": "Mod for manually checking seeds found by a seedfinder",
 	"authors": [
 		"Scribble"
@@ -11,7 +11,7 @@
 		"sources": "https://github.com/ScribbleTAS/SeedChecker"
 	},
 	"license": "MIT",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/seedchecker/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -27,11 +27,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.17.2",
-		"minecraft": "*",
+		"minecraft": "1.21.8",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
